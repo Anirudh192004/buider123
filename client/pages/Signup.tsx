@@ -228,27 +228,6 @@ export default function Signup() {
         </Alert>
       )}
 
-      <div className="flex items-center space-x-3 p-4 bg-blue-900/20 rounded-lg border border-blue-500/30 transition-all duration-300 hover:bg-blue-900/30">
-        <input
-          type="checkbox"
-          id="demoMode"
-          checked={useDemoMode}
-          onChange={(e) => setUseDemoMode(e.target.checked)}
-          className="rounded border-blue-500 text-blue-500 focus:ring-blue-500 w-4 h-4"
-        />
-        <div className="flex-1">
-          <label htmlFor="demoMode" className="text-sm font-medium text-slate-200 flex items-center cursor-pointer">
-            <Zap className="mr-2 h-4 w-4 text-blue-400" />
-            Use Demo Mode
-          </label>
-          <p className="text-xs text-slate-400 mt-1">
-            {useDemoMode ?
-              '⚡ Verification link will open in browser instantly' :
-              '📧 Email verification (requires Supabase setup)'
-            }
-          </p>
-        </div>
-      </div>
 
       <Button
         type="submit"
