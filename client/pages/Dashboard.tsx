@@ -137,7 +137,7 @@ export default function Dashboard() {
             <Button
               onClick={handleRefreshData}
               variant="outline"
-              className="border-slate-600 text-slate-200 hover:bg-slate-700"
+              className="btn-neon-outline"
               disabled={loading}
             >
               {loading ? (
