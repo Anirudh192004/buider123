@@ -98,19 +98,8 @@ export default function Signup() {
       if (data.success) {
         setProgress(100);
         setStatusMessage('Account created successfully!');
-
-        if (data.demo && data.verificationUrl) {
-          // For demo mode, show the verification link
-          setStatusMessage('Opening verification link...');
-          setTimeout(() => {
-            alert(`Demo Mode: Verification link opened in new tab!`);
-            window.open(`${window.location.origin}${data.verificationUrl}`, '_blank');
-            setStep('email-sent');
-          }, 1000);
-        } else {
-          setStatusMessage('Sending verification email...');
-          setTimeout(() => setStep('email-sent'), 1000);
-        }
+        setStatusMessage('Sending verification email...');
+        setTimeout(() => setStep('email-sent'), 1000);
       } else {
         setError(data.message);
         setStep('signup');
