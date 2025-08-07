@@ -19,7 +19,7 @@ export default function Signup() {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [step, setStep] = useState<'signup' | 'processing' | 'email-sent'>('signup');
+  const [step, setStep] = useState<'signup' | 'processing' | 'success'>('signup');
   const [progress, setProgress] = useState(0);
   const [statusMessage, setStatusMessage] = useState('');
   const navigate = useNavigate();
