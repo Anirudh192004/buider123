@@ -143,7 +143,7 @@ export default function Signup() {
       <div className="space-y-2">
         <Label htmlFor="department" className="text-slate-200">Department</Label>
         <Select value={formData.department} onValueChange={(value) => handleInputChange('department', value)}>
-          <SelectTrigger className="bg-slate-700/50 border-slate-600 text-white focus:border-purple-400">
+          <SelectTrigger className="bg-slate-700/50 border-slate-600 text-white input-neon">
             <SelectValue placeholder="Select your department" />
           </SelectTrigger>
           <SelectContent className="bg-slate-800 border-slate-600">
