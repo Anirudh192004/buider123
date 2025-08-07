@@ -55,8 +55,51 @@ export default function Dashboard() {
   };
 
   const handleExport = () => {
-    // Export functionality would be implemented here
-    alert('Export functionality would be implemented here');
+    // Export student data as CSV
+    if (analytics?.studentsList) {
+      const csvContent = generateCSV(analytics.studentsList);
+      downloadCSV(csvContent, `student-data-${user.name.replace(' ', '-')}-${new Date().toISOString().split('T')[0]}.csv`);
+    } else {
+      alert('No student data available to export');
+    }
+  };
+
+  const generateCSV = (students: any[]) => {
+    const headers = ['Name', 'Student ID', 'Overall Grade', 'Overall Attendance', 'Status', 'Mathematics', 'Physics', 'Chemistry', 'English', 'Biology'];
+    const rows = students.map(student => [
+      student.name,
+      student.studentId,
+      student.overallGrade,
+      student.overallAttendance,
+      student.status,
+      student.subjects.Mathematics?.score || 'N/A',
+      student.subjects.Physics?.score || 'N/A',
+      student.subjects.Chemistry?.score || 'N/A',
+      student.subjects.English?.score || 'N/A',
+      student.subjects.Biology?.score || 'N/A'
+    ]);
+
+    return [headers, ...rows].map(row => row.join(',')).join('\n');
+  };
+
+  const downloadCSV = (csvContent: string, filename: string) => {
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    if (link.download !== undefined) {
+      const url = URL.createObjectURL(blob);
+      link.setAttribute('href', url);
+      link.setAttribute('download', filename);
+      link.style.visibility = 'hidden';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  };
+
+  const handleRefreshData = () => {
+    if (user) {
+      fetchAnalytics(user.id);
+    }
   };
 
   if (!user || loading) {
