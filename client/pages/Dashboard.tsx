@@ -300,7 +300,7 @@ export default function Dashboard() {
                     />
                     <Bar
                       dataKey="score"
-                      fill="#8B5CF6"
+                      fill="#0EA5E9"
                       radius={[4, 4, 0, 0]}
                     />
                   </BarChart>
