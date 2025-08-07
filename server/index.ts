@@ -21,11 +21,12 @@ export function createServer() {
 
   app.get("/api/demo", handleDemo);
 
-  // Authentication routes
+  // Authentication routes (Supabase)
   app.post("/api/auth/login", login);
   app.post("/api/auth/signup", signup);
-  app.post("/api/auth/verify", verifyCode);
-  app.get("/api/auth/check-email", checkEmail);
+  app.post("/api/auth/resend-verification", resendVerification);
+  app.get("/api/auth/check-email-status", checkEmailStatus);
+  app.post("/api/auth/logout", logout);
 
   // Student data routes
   app.get("/api/faculty/:facultyId/analytics", getAnalytics);
