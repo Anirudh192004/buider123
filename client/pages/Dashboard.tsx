@@ -276,7 +276,7 @@ export default function Dashboard() {
           </Card>
 
           {/* Subject-wise Performance Chart */}
-          <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-sm">
+          <Card className="bg-slate-800/50 border-blue-500/20 backdrop-blur-sm shadow-lg shadow-blue-500/10">
             <CardHeader>
               <CardTitle className="text-white">Subject-wise Performance</CardTitle>
             </CardHeader>
