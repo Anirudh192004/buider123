@@ -123,7 +123,7 @@ export default function Signup() {
           value={formData.name}
           onChange={(e) => handleInputChange('name', e.target.value)}
           required
-          className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-purple-400"
+          className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400 input-neon"
         />
       </div>
 
@@ -136,7 +136,7 @@ export default function Signup() {
           value={formData.email}
           onChange={(e) => handleInputChange('email', e.target.value)}
           required
-          className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-purple-400"
+          className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400 input-neon"
         />
       </div>
 
@@ -165,7 +165,7 @@ export default function Signup() {
           value={formData.password}
           onChange={(e) => handleInputChange('password', e.target.value)}
           required
-          className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-purple-400"
+          className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400 input-neon"
         />
       </div>
 
@@ -178,7 +178,7 @@ export default function Signup() {
           value={formData.confirmPassword}
           onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
           required
-          className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-purple-400"
+          className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400 input-neon"
         />
       </div>
 
