@@ -66,6 +66,11 @@ export default function Signup() {
       const data = await response.json();
 
       if (data.success) {
+        if (data.demo && data.verificationUrl) {
+          // For demo mode, show the verification link
+          alert(`Demo Mode: Click this link to verify: ${window.location.origin}${data.verificationUrl}`);
+          window.open(`${window.location.origin}${data.verificationUrl}`, '_blank');
+        }
         setStep('email-sent');
       } else {
         setError(data.message);
