@@ -97,14 +97,25 @@ export default function Signup() {
       const data = await response.json();
 
       if (data.success) {
+        setProgress(100);
+        setStatusMessage('Account created successfully!');
+
         if (data.demo && data.verificationUrl) {
           // For demo mode, show the verification link
-          alert(`Demo Mode: Click this link to verify: ${window.location.origin}${data.verificationUrl}`);
-          window.open(`${window.location.origin}${data.verificationUrl}`, '_blank');
+          setStatusMessage('Opening verification link...');
+          setTimeout(() => {
+            alert(`Demo Mode: Verification link opened in new tab!`);
+            window.open(`${window.location.origin}${data.verificationUrl}`, '_blank');
+            setStep('email-sent');
+          }, 1000);
+        } else {
+          setStatusMessage('Sending verification email...');
+          setTimeout(() => setStep('email-sent'), 1000);
         }
-        setStep('email-sent');
       } else {
         setError(data.message);
+        setStep('signup');
+        setProgress(0);
 
         // If account already exists, redirect to login
         if (data.message.includes('already exists') || data.message.includes('already registered')) {
@@ -116,6 +127,8 @@ export default function Signup() {
     } catch (error) {
       console.error('Signup error:', error);
       setError(`Network error: ${error.message || 'Please try again.'}`);
+      setStep('signup');
+      setProgress(0);
     } finally {
       setLoading(false);
     }
