@@ -50,7 +50,7 @@ export default function Login() {
       } else {
         // Enhanced error messaging
         if (data.message.includes('verify your email')) {
-          setError(`${data.message} ${useDemoMode ? 'Click the verification link that was shown during signup.' : 'Or enable Demo Mode to bypass email verification.'}`);
+          setError(`${data.message} Check your email inbox for the verification link.`);
         } else {
           setError(data.message);
         }
