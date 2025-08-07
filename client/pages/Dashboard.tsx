@@ -264,10 +264,10 @@ export default function Dashboard() {
                     <Line
                       type="monotone"
                       dataKey="performance"
-                      stroke="#8B5CF6"
+                      stroke="#0EA5E9"
                       strokeWidth={3}
-                      dot={{ fill: '#8B5CF6', strokeWidth: 2, r: 6 }}
-                      activeDot={{ r: 8, fill: '#A855F7' }}
+                      dot={{ fill: '#0EA5E9', strokeWidth: 2, r: 6 }}
+                      activeDot={{ r: 8, fill: '#3B82F6' }}
                     />
                   </LineChart>
                 </ResponsiveContainer>
