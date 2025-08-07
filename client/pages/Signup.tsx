@@ -297,34 +297,23 @@ export default function Signup() {
       </div>
 
       <div className="space-y-3">
-        <h3 className="text-lg font-semibold text-white">
-          {useDemoMode ? 'Verification Link Created!' : 'Check Your Email'}
-        </h3>
+        <h3 className="text-lg font-semibold text-white">Check Your Email</h3>
         <p className="text-slate-400">
-          {useDemoMode ? (
-            <>We've opened a verification link in a new tab. If it didn't open, check your browser's popup blocker.</>
-          ) : (
-            <>We've sent a verification link to <strong className="text-white">{formData.email}</strong></>
-          )}
+          We've sent a verification link to <strong className="text-white">{formData.email}</strong>
         </p>
 
-        {!useDemoMode && (
-          <div className="p-3 bg-yellow-900/20 rounded-lg border border-yellow-500/30">
-            <div className="flex items-center space-x-2 text-yellow-400">
-              <AlertCircle className="w-4 h-4" />
-              <span className="text-sm font-medium">Email not arriving?</span>
-            </div>
-            <p className="text-xs text-yellow-300 mt-1">
-              Check your spam folder or try Demo Mode for instant verification
-            </p>
+        <div className="p-3 bg-yellow-900/20 rounded-lg border border-yellow-500/30">
+          <div className="flex items-center space-x-2 text-yellow-400">
+            <AlertCircle className="w-4 h-4" />
+            <span className="text-sm font-medium">Email not arriving?</span>
           </div>
-        )}
+          <p className="text-xs text-yellow-300 mt-1">
+            Check your spam folder or ensure Supabase is properly configured
+          </p>
+        </div>
 
         <p className="text-sm text-slate-500">
-          {useDemoMode ?
-            'Complete the verification, then return here to log in.' :
-            'Click the link in your email to verify your account, then return here to log in.'
-          }
+          Click the link in your email to verify your account, then return here to log in.
         </p>
       </div>
 
