@@ -14,9 +14,9 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 flex items-center justify-center p-4">
       <div className="text-center space-y-6">
-        <div className="mx-auto w-16 h-16 bg-purple-600 rounded-lg flex items-center justify-center">
+        <div className="mx-auto w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/50">
           <GraduationCap className="w-8 h-8 text-white" />
         </div>
         <div className="space-y-2">
