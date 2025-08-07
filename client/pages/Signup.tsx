@@ -191,7 +191,7 @@ export default function Signup() {
       <Button
         type="submit"
         disabled={loading}
-        className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+        className="w-full btn-neon text-white font-semibold"
       >
         {loading ? (
           <>
