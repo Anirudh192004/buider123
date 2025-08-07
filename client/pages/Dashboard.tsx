@@ -335,7 +335,7 @@ export default function Dashboard() {
       {/* Upload Modal (simplified for now) */}
       {showUploadModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-          <Card className="bg-slate-800 border-slate-700 w-full max-w-md">
+          <Card className="bg-slate-800 border-blue-500/30 w-full max-w-md shadow-2xl shadow-blue-500/20">
             <CardHeader>
               <CardTitle className="text-white">Upload Student Data</CardTitle>
             </CardHeader>
