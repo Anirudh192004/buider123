@@ -89,7 +89,7 @@ export default function Login() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-purple-400"
+                  className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400 input-neon"
                 />
               </div>
 
