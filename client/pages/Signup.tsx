@@ -274,18 +274,18 @@ export default function Signup() {
             </div>
             <div>
               <CardTitle className="text-2xl font-bold text-white">
-                {step === 'signup' ? 'Create Faculty Account' : 'Verify Your Account'}
+                {step === 'signup' ? 'Create Faculty Account' : 'Verify Your Email'}
               </CardTitle>
               <CardDescription className="text-slate-400">
-                {step === 'signup' 
-                  ? 'Join our academic community' 
+                {step === 'signup'
+                  ? 'Join our academic community'
                   : 'Complete your registration process'
                 }
               </CardDescription>
             </div>
           </CardHeader>
           <CardContent>
-            {step === 'signup' ? renderSignupForm() : renderVerificationForm()}
+            {step === 'signup' ? renderSignupForm() : renderEmailSentForm()}
 
             {step === 'signup' && (
               <div className="mt-6 text-center">
