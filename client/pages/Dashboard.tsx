@@ -59,8 +59,15 @@ export default function Dashboard() {
     alert('Export functionality would be implemented here');
   };
 
-  if (!user) {
-    return null;
+  if (!user || loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900 flex items-center justify-center">
+        <div className="text-center space-y-4">
+          <Loader2 className="w-8 h-8 animate-spin text-purple-400 mx-auto" />
+          <p className="text-slate-400">Loading dashboard...</p>
+        </div>
+      </div>
+    );
   }
 
   return (
