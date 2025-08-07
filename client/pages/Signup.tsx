@@ -338,29 +338,48 @@ export default function Signup() {
           </Alert>
         )}
 
-        <div className="space-y-2">
-          <Button
-            onClick={handleResendVerification}
-            disabled={loading}
-            variant="outline"
-            className="w-full btn-neon-outline"
-          >
-            {loading ? (
-              <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Sending...
-              </>
-            ) : (
-              'Resend Verification Email'
-            )}
-          </Button>
+        <div className="space-y-3">
+          {!useDemoMode && (
+            <Button
+              onClick={handleResendVerification}
+              disabled={loading}
+              variant="outline"
+              className="w-full btn-neon-outline"
+            >
+              {loading ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Sending...
+                </>
+              ) : (
+                <>
+                  <Mail className="mr-2 h-4 w-4" />
+                  Resend Verification Email
+                </>
+              )}
+            </Button>
+          )}
 
-          <Button
-            onClick={() => navigate('/login')}
-            className="w-full btn-neon text-white font-semibold"
-          >
-            Go to Login
-          </Button>
+          <div className="grid grid-cols-2 gap-2">
+            <Button
+              onClick={() => {
+                setUseDemoMode(true);
+                setStep('signup');
+              }}
+              variant="outline"
+              className="btn-neon-outline text-sm"
+            >
+              <Zap className="mr-1 h-3 w-3" />
+              Try Demo Mode
+            </Button>
+
+            <Button
+              onClick={() => navigate('/login')}
+              className="btn-neon text-white font-semibold text-sm"
+            >
+              Go to Login
+            </Button>
+          </div>
         </div>
       </div>
 
