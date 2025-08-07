@@ -20,5 +20,11 @@ export function createServer() {
 
   app.get("/api/demo", handleDemo);
 
+  // Authentication routes
+  app.post("/api/auth/login", login);
+  app.post("/api/auth/signup", signup);
+  app.post("/api/auth/verify", verifyCode);
+  app.get("/api/auth/check-email", checkEmail);
+
   return app;
 }
