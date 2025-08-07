@@ -52,11 +52,11 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
-        <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-sm">
+        <Card className="bg-slate-800/50 border-blue-500/30 backdrop-blur-sm shadow-2xl shadow-blue-500/20">
           <CardHeader className="text-center space-y-4">
-            <div className="mx-auto w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center">
+            <div className="mx-auto w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/50">
               <GraduationCap className="w-6 h-6 text-white" />
             </div>
             <div>
