@@ -195,6 +195,19 @@ export default function Signup() {
         </Alert>
       )}
 
+      <div className="flex items-center space-x-2 p-3 bg-blue-900/20 rounded-lg border border-blue-500/30">
+        <input
+          type="checkbox"
+          id="demoMode"
+          checked={useDemoMode}
+          onChange={(e) => setUseDemoMode(e.target.checked)}
+          className="rounded border-blue-500"
+        />
+        <label htmlFor="demoMode" className="text-sm text-slate-300">
+          Use Demo Mode (verification link in browser instead of email)
+        </label>
+      </div>
+
       <Button
         type="submit"
         disabled={loading}
