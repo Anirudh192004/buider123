@@ -205,60 +205,54 @@ export default function Signup() {
     </form>
   );
 
-  const renderVerificationForm = () => (
+  const renderEmailSentForm = () => (
     <div className="text-center space-y-4">
       <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
         <Mail className="w-8 h-8 text-white" />
       </div>
-      
+
       <div className="space-y-2">
         <h3 className="text-lg font-semibold text-white">Check Your Email</h3>
         <p className="text-slate-400">
-          We've sent a faculty code to <strong className="text-white">{formData.email}</strong>
+          We've sent a verification link to <strong className="text-white">{formData.email}</strong>
         </p>
-        <p className="text-sm text-purple-400">
-          Your faculty code: <strong>{facultyCode}</strong>
+        <p className="text-sm text-slate-500">
+          Click the link in your email to verify your account, then return here to log in.
         </p>
       </div>
 
-      <form onSubmit={handleVerification} className="space-y-4">
-        <div className="space-y-2">
-          <Label htmlFor="verificationCode" className="text-slate-200">Enter Faculty Code</Label>
-          <Input
-            id="verificationCode"
-            type="text"
-            placeholder="Enter the 5-digit code (e.g., CS123)"
-            value={verificationCode}
-            onChange={(e) => setVerificationCode(e.target.value)}
-            required
-            className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-purple-400 text-center text-lg tracking-widest"
-          />
-        </div>
-
+      <div className="space-y-4">
         {error && (
           <Alert className="bg-red-900/50 border-red-700">
             <AlertDescription className="text-red-200">{error}</AlertDescription>
           </Alert>
         )}
 
-        <Button
-          type="submit"
-          disabled={loading}
-          className="w-full bg-green-600 hover:bg-green-700 text-white"
-        >
-          {loading ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Verifying...
-            </>
-          ) : (
-            <>
-              <CheckCircle className="mr-2 h-4 w-4" />
-              Verify Account
-            </>
-          )}
-        </Button>
-      </form>
+        <div className="space-y-2">
+          <Button
+            onClick={handleResendVerification}
+            disabled={loading}
+            variant="outline"
+            className="w-full border-slate-600 text-slate-200 hover:bg-slate-700"
+          >
+            {loading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Sending...
+              </>
+            ) : (
+              'Resend Verification Email'
+            )}
+          </Button>
+
+          <Button
+            onClick={() => navigate('/login')}
+            className="w-full bg-purple-600 hover:bg-purple-700 text-white"
+          >
+            Go to Login
+          </Button>
+        </div>
+      </div>
 
       <Button
         variant="ghost"
