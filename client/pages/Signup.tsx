@@ -233,7 +233,7 @@ export default function Signup() {
             onClick={handleResendVerification}
             disabled={loading}
             variant="outline"
-            className="w-full border-slate-600 text-slate-200 hover:bg-slate-700"
+            className="w-full btn-neon-outline"
           >
             {loading ? (
               <>
