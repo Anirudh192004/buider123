@@ -126,14 +126,27 @@ export default function Dashboard() {
           </div>
           
           <div className="flex items-center space-x-4">
-            <Button 
+            <Button
               onClick={handleImportData}
               className="bg-purple-600 hover:bg-purple-700 text-white"
             >
               <Upload className="w-4 h-4 mr-2" />
               Import Data
             </Button>
-            
+
+            <Button
+              onClick={handleRefreshData}
+              variant="outline"
+              className="border-slate-600 text-slate-200 hover:bg-slate-700"
+              disabled={loading}
+            >
+              {loading ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                'Refresh'
+              )}
+            </Button>
+
             <Button variant="ghost" size="icon" className="text-slate-400 hover:text-white">
               <Bell className="w-5 h-5" />
             </Button>
