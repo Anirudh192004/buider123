@@ -1,4 +1,3 @@
-import { RequestHandler } from "express";
 import { findFacultyByEmail, addFaculty, generateFacultyCode, verifyFaculty } from "../db/faculty.js";
 
 // Login endpoint
