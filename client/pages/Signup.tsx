@@ -268,76 +268,54 @@ export default function Signup() {
     </div>
   );
 
-  const renderEmailSentForm = () => (
-    <div className="text-center space-y-4">
-      <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-green-500/30">
-        <Mail className="w-8 h-8 text-white" />
-      </div>
-
-      <div className="space-y-3">
-        <h3 className="text-lg font-semibold text-white">Check Your Email</h3>
-        <p className="text-slate-400">
-          We've sent a verification link to <strong className="text-white">{formData.email}</strong>
-        </p>
-
-        <div className="p-3 bg-yellow-900/20 rounded-lg border border-yellow-500/30">
-          <div className="flex items-center space-x-2 text-yellow-400">
-            <AlertCircle className="w-4 h-4" />
-            <span className="text-sm font-medium">Email not arriving?</span>
-          </div>
-          <p className="text-xs text-yellow-300 mt-1">
-            Check your spam folder or ensure Supabase is properly configured
-          </p>
-        </div>
-
-        <p className="text-sm text-slate-500">
-          Click the link in your email to verify your account, then return here to log in.
-        </p>
+  const renderSuccessForm = () => (
+    <div className="text-center space-y-6">
+      <div className="w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-green-500/30 animate-pulse">
+        <CheckCircle className="w-10 h-10 text-white" />
       </div>
 
       <div className="space-y-4">
-        {error && (
-          <Alert className="bg-red-900/50 border-red-700">
-            <AlertDescription className="text-red-200">{error}</AlertDescription>
-          </Alert>
-        )}
+        <h3 className="text-2xl font-bold text-white">Account Created Successfully! 🎉</h3>
+        <p className="text-slate-300 text-lg">
+          Welcome to the Faculty Portal, <strong className="text-blue-400">{formData.name}</strong>!
+        </p>
 
-        <div className="space-y-3">
-          <Button
-            onClick={handleResendVerification}
-            disabled={loading}
-            variant="outline"
-            className="w-full btn-neon-outline"
-          >
-            {loading ? (
-              <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Sending...
-              </>
-            ) : (
-              <>
-                <Mail className="mr-2 h-4 w-4" />
-                Resend Verification Email
-              </>
-            )}
-          </Button>
-
-          <Button
-            onClick={() => navigate('/login')}
-            className="w-full btn-neon text-white font-semibold"
-          >
-            Go to Login
-          </Button>
+        <div className="p-4 bg-green-900/20 rounded-lg border border-green-500/30">
+          <div className="flex items-center justify-center space-x-2 text-green-400 mb-2">
+            <CheckCircle className="w-5 h-5" />
+            <span className="font-semibold">Account Details</span>
+          </div>
+          <div className="space-y-1 text-sm">
+            <p className="text-slate-300"><strong>Email:</strong> {formData.email}</p>
+            <p className="text-slate-300"><strong>Department:</strong> {formData.department}</p>
+          </div>
         </div>
+
+        <p className="text-slate-400">
+          Your faculty account is ready to use. You can now access the student performance dashboard.
+        </p>
       </div>
 
-      <Button
-        variant="ghost"
-        onClick={() => setStep('signup')}
-        className="text-slate-400 hover:text-white"
-      >
-        Back to Signup
-      </Button>
+      <div className="space-y-3">
+        <Button
+          onClick={() => navigate('/login')}
+          className="w-full btn-neon text-white font-semibold text-lg py-3"
+        >
+          Continue to Login
+        </Button>
+
+        <Button
+          variant="ghost"
+          onClick={() => setStep('signup')}
+          className="text-slate-400 hover:text-white"
+        >
+          Create Another Account
+        </Button>
+      </div>
+
+      <div className="text-xs text-slate-500">
+        Keep your login credentials safe for future access.
+      </div>
     </div>
   );
 
