@@ -128,7 +128,7 @@ export default function Dashboard() {
           <div className="flex items-center space-x-4">
             <Button
               onClick={handleImportData}
-              className="bg-purple-600 hover:bg-purple-700 text-white"
+              className="btn-neon text-white font-semibold"
             >
               <Upload className="w-4 h-4 mr-2" />
               Import Data
