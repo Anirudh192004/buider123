@@ -37,7 +37,12 @@ export default function Login() {
         localStorage.setItem('user', JSON.stringify(data.user));
         navigate('/dashboard');
       } else {
-        setError(data.message);
+        // Enhanced error messaging
+        if (data.message.includes('verify your email')) {
+          setError(`${data.message} ${useDemoMode ? 'Click the verification link that was shown during signup.' : 'Or enable Demo Mode to bypass email verification.'}`);
+        } else {
+          setError(data.message);
+        }
 
         // If account not found, redirect to signup
         if (data.message.includes('Account not found')) {
