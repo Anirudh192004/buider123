@@ -6,19 +6,19 @@ const users = new Map(); // In-memory storage for demo
 export const demoSignup = async (req, res) => {
   try {
     const { name, email, password, department } = req.body;
-    
+
     if (!name || !email || !password || !department) {
-      return res.status(400).json({ 
-        success: false, 
-        message: "All fields are required" 
+      return res.status(400).json({
+        success: false,
+        message: "All fields are required",
       });
     }
 
     // Check if user already exists
     if (users.has(email)) {
-      return res.status(409).json({ 
-        success: false, 
-        message: "Account already exists with this email" 
+      return res.status(409).json({
+        success: false,
+        message: "Account already exists with this email",
       });
     }
 
@@ -33,10 +33,12 @@ export const demoSignup = async (req, res) => {
       department,
       facultyCode,
       verified: true, // Auto-verify for immediate use
-      created: new Date()
+      created: new Date(),
     });
 
-    console.log(`✅ Faculty account created: ${email} with code ${facultyCode}`);
+    console.log(
+      `✅ Faculty account created: ${email} with code ${facultyCode}`,
+    );
 
     res.status(201).json({
       success: true,
@@ -45,14 +47,14 @@ export const demoSignup = async (req, res) => {
         name,
         email,
         department,
-        facultyCode
-      }
+        facultyCode,
+      },
     });
   } catch (error) {
     console.error("Demo signup error:", error);
-    res.status(500).json({ 
-      success: false, 
-      message: "Internal server error" 
+    res.status(500).json({
+      success: false,
+      message: "Internal server error",
     });
   }
 };
@@ -60,19 +62,19 @@ export const demoSignup = async (req, res) => {
 export const demoVerify = async (req, res) => {
   try {
     const { email, code } = req.query;
-    
+
     const user = users.get(email);
     if (!user) {
-      return res.status(404).json({ 
-        success: false, 
-        message: "User not found" 
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
       });
     }
 
     if (user.facultyCode !== code) {
-      return res.status(400).json({ 
-        success: false, 
-        message: "Invalid verification code" 
+      return res.status(400).json({
+        success: false,
+        message: "Invalid verification code",
       });
     }
 
@@ -83,13 +85,13 @@ export const demoVerify = async (req, res) => {
     res.json({
       success: true,
       message: "Email verified successfully! You can now log in.",
-      redirect: "/login"
+      redirect: "/login",
     });
   } catch (error) {
     console.error("Demo verify error:", error);
-    res.status(500).json({ 
-      success: false, 
-      message: "Internal server error" 
+    res.status(500).json({
+      success: false,
+      message: "Internal server error",
     });
   }
 };
@@ -97,26 +99,27 @@ export const demoVerify = async (req, res) => {
 export const demoLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
-    
+
     const user = users.get(email);
     if (!user) {
-      return res.status(401).json({ 
-        success: false, 
-        message: "Account not found" 
+      return res.status(401).json({
+        success: false,
+        message: "Account not found",
       });
     }
 
     if (user.password !== password) {
-      return res.status(401).json({ 
-        success: false, 
-        message: "Invalid password" 
+      return res.status(401).json({
+        success: false,
+        message: "Invalid password",
       });
     }
 
     if (!user.verified) {
-      return res.status(401).json({ 
-        success: false, 
-        message: "Please verify your email first. Check the server console for the verification link." 
+      return res.status(401).json({
+        success: false,
+        message:
+          "Please verify your email first. Check the server console for the verification link.",
       });
     }
 
@@ -126,19 +129,19 @@ export const demoLogin = async (req, res) => {
       name: user.name,
       email: user.email,
       department: user.department,
-      faculty_code: user.facultyCode
+      faculty_code: user.facultyCode,
     };
-    
+
     res.json({
       success: true,
       message: "Login successful",
-      user: userData
+      user: userData,
     });
   } catch (error) {
     console.error("Demo login error:", error);
-    res.status(500).json({ 
-      success: false, 
-      message: "Internal server error" 
+    res.status(500).json({
+      success: false,
+      message: "Internal server error",
     });
   }
 };

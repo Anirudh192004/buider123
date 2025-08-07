@@ -1,30 +1,36 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Loader2, GraduationCap } from 'lucide-react';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Loader2, GraduationCap } from "lucide-react";
 
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setError('');
+    setError("");
 
     try {
-      const endpoint = '/api/demo/login';
+      const endpoint = "/api/demo/login";
       const response = await fetch(endpoint, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, password }),
       });
@@ -45,26 +51,28 @@ export default function Login() {
 
       if (data.success) {
         // Store user data in localStorage
-        localStorage.setItem('user', JSON.stringify(data.user));
-        navigate('/dashboard');
+        localStorage.setItem("user", JSON.stringify(data.user));
+        navigate("/dashboard");
       } else {
         // Enhanced error messaging
-        if (data.message.includes('verify your email')) {
-          setError(`${data.message} Check your email inbox for the verification link.`);
+        if (data.message.includes("verify your email")) {
+          setError(
+            `${data.message} Check your email inbox for the verification link.`,
+          );
         } else {
           setError(data.message);
         }
 
         // If account not found, redirect to signup
-        if (data.message.includes('Account not found')) {
+        if (data.message.includes("Account not found")) {
           setTimeout(() => {
-            navigate('/signup');
+            navigate("/signup");
           }, 2000);
         }
       }
     } catch (error) {
-      console.error('Login error:', error);
-      setError(`Network error: ${error.message || 'Please try again.'}`);
+      console.error("Login error:", error);
+      setError(`Network error: ${error.message || "Please try again."}`);
     } finally {
       setLoading(false);
     }
@@ -79,7 +87,9 @@ export default function Login() {
               <GraduationCap className="w-6 h-6 text-white" />
             </div>
             <div>
-              <CardTitle className="text-2xl font-bold text-white">Faculty Login</CardTitle>
+              <CardTitle className="text-2xl font-bold text-white">
+                Faculty Login
+              </CardTitle>
               <CardDescription className="text-slate-400">
                 Sign in to access your student dashboard
               </CardDescription>
@@ -88,7 +98,9 @@ export default function Login() {
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-slate-200">Email</Label>
+                <Label htmlFor="email" className="text-slate-200">
+                  Email
+                </Label>
                 <Input
                   id="email"
                   type="email"
@@ -100,7 +112,9 @@ export default function Login() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="password" className="text-slate-200">Password</Label>
+                <Label htmlFor="password" className="text-slate-200">
+                  Password
+                </Label>
                 <Input
                   id="password"
                   type="password"
@@ -114,10 +128,11 @@ export default function Login() {
 
               {error && (
                 <Alert className="bg-red-900/50 border-red-700">
-                  <AlertDescription className="text-red-200">{error}</AlertDescription>
+                  <AlertDescription className="text-red-200">
+                    {error}
+                  </AlertDescription>
                 </Alert>
               )}
-
 
               <Button
                 type="submit"
@@ -130,15 +145,18 @@ export default function Login() {
                     Signing in...
                   </>
                 ) : (
-                  'Sign In'
+                  "Sign In"
                 )}
               </Button>
             </form>
 
             <div className="mt-6 text-center">
               <p className="text-slate-400">
-                Don't have an account?{' '}
-                <Link to="/signup" className="text-blue-400 hover:text-cyan-300 underline text-neon">
+                Don't have an account?{" "}
+                <Link
+                  to="/signup"
+                  className="text-blue-400 hover:text-cyan-300 underline text-neon"
+                >
                   Sign up here
                 </Link>
               </p>

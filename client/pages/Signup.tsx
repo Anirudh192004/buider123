@@ -1,73 +1,95 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Progress } from '@/components/ui/progress';
-import { Loader2, GraduationCap, CheckCircle, Mail, AlertCircle, Zap, Clock } from 'lucide-react';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Progress } from "@/components/ui/progress";
+import {
+  Loader2,
+  GraduationCap,
+  CheckCircle,
+  Mail,
+  AlertCircle,
+  Zap,
+  Clock,
+} from "lucide-react";
 
 export default function Signup() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    department: '',
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    department: "",
   });
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [step, setStep] = useState<'signup' | 'processing' | 'success'>('signup');
+  const [error, setError] = useState("");
+  const [step, setStep] = useState<"signup" | "processing" | "success">(
+    "signup",
+  );
   const [progress, setProgress] = useState(0);
-  const [statusMessage, setStatusMessage] = useState('');
+  const [statusMessage, setStatusMessage] = useState("");
   const navigate = useNavigate();
 
   const departments = [
-    'Computer Science',
-    'Mathematics',
-    'Physics',
-    'Chemistry',
-    'Biology',
-    'English',
-    'Engineering',
-    'Business Administration',
+    "Computer Science",
+    "Mathematics",
+    "Physics",
+    "Chemistry",
+    "Biology",
+    "English",
+    "Engineering",
+    "Business Administration",
   ];
 
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setError('');
-    setStep('processing');
+    setError("");
+    setStep("processing");
     setProgress(0);
 
     if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match');
+      setError("Passwords do not match");
       setLoading(false);
-      setStep('signup');
+      setStep("signup");
       return;
     }
 
     try {
       // Progress: Validating form
-      setStatusMessage('Validating form data...');
+      setStatusMessage("Validating form data...");
       setProgress(20);
-      await new Promise(resolve => setTimeout(resolve, 500)); // Small delay for UX
+      await new Promise((resolve) => setTimeout(resolve, 500)); // Small delay for UX
 
       // Progress: Creating account
-      setStatusMessage('Creating your faculty account...');
+      setStatusMessage("Creating your faculty account...");
       setProgress(50);
 
-      const endpoint = '/api/demo/signup';
+      const endpoint = "/api/demo/signup";
       const response = await fetch(endpoint, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           name: formData.name,
@@ -78,7 +100,7 @@ export default function Signup() {
       });
 
       // Progress: Processing response
-      setStatusMessage('Processing response...');
+      setStatusMessage("Processing response...");
       setProgress(80);
 
       // Check if response is ok and has content
@@ -97,24 +119,27 @@ export default function Signup() {
 
       if (data.success) {
         setProgress(100);
-        setStatusMessage('Account created successfully!');
-        setTimeout(() => setStep('success'), 1000);
+        setStatusMessage("Account created successfully!");
+        setTimeout(() => setStep("success"), 1000);
       } else {
         setError(data.message);
-        setStep('signup');
+        setStep("signup");
         setProgress(0);
 
         // If account already exists, redirect to login
-        if (data.message.includes('already exists') || data.message.includes('already registered')) {
+        if (
+          data.message.includes("already exists") ||
+          data.message.includes("already registered")
+        ) {
           setTimeout(() => {
-            navigate('/login');
+            navigate("/login");
           }, 2000);
         }
       }
     } catch (error) {
-      console.error('Signup error:', error);
-      setError(`Network error: ${error.message || 'Please try again.'}`);
-      setStep('signup');
+      console.error("Signup error:", error);
+      setError(`Network error: ${error.message || "Please try again."}`);
+      setStep("signup");
       setProgress(0);
     } finally {
       setLoading(false);
@@ -123,13 +148,13 @@ export default function Signup() {
 
   const handleResendVerification = async () => {
     setLoading(true);
-    setError('');
+    setError("");
 
     try {
-      const response = await fetch('/api/auth/resend-verification', {
-        method: 'POST',
+      const response = await fetch("/api/auth/resend-verification", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           email: formData.email,
@@ -139,13 +164,13 @@ export default function Signup() {
       const data = await response.json();
 
       if (data.success) {
-        setError(''); // Clear any previous errors
-        alert('Verification email sent successfully!');
+        setError(""); // Clear any previous errors
+        alert("Verification email sent successfully!");
       } else {
         setError(data.message);
       }
     } catch (error) {
-      setError('Network error. Please try again.');
+      setError("Network error. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -154,40 +179,53 @@ export default function Signup() {
   const renderSignupForm = () => (
     <form onSubmit={handleSignup} className="space-y-4">
       <div className="space-y-2">
-        <Label htmlFor="name" className="text-slate-200">Full Name</Label>
+        <Label htmlFor="name" className="text-slate-200">
+          Full Name
+        </Label>
         <Input
           id="name"
           type="text"
           placeholder="Enter your full name"
           value={formData.name}
-          onChange={(e) => handleInputChange('name', e.target.value)}
+          onChange={(e) => handleInputChange("name", e.target.value)}
           required
           className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400 input-neon"
         />
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="email" className="text-slate-200">Email</Label>
+        <Label htmlFor="email" className="text-slate-200">
+          Email
+        </Label>
         <Input
           id="email"
           type="email"
           placeholder="Enter your university email"
           value={formData.email}
-          onChange={(e) => handleInputChange('email', e.target.value)}
+          onChange={(e) => handleInputChange("email", e.target.value)}
           required
           className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400 input-neon"
         />
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="department" className="text-slate-200">Department</Label>
-        <Select value={formData.department} onValueChange={(value) => handleInputChange('department', value)}>
+        <Label htmlFor="department" className="text-slate-200">
+          Department
+        </Label>
+        <Select
+          value={formData.department}
+          onValueChange={(value) => handleInputChange("department", value)}
+        >
           <SelectTrigger className="bg-slate-700/50 border-slate-600 text-white input-neon">
             <SelectValue placeholder="Select your department" />
           </SelectTrigger>
           <SelectContent className="bg-slate-800 border-slate-600">
             {departments.map((dept) => (
-              <SelectItem key={dept} value={dept} className="text-white hover:bg-slate-700">
+              <SelectItem
+                key={dept}
+                value={dept}
+                className="text-white hover:bg-slate-700"
+              >
                 {dept}
               </SelectItem>
             ))}
@@ -196,26 +234,30 @@ export default function Signup() {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="password" className="text-slate-200">Password</Label>
+        <Label htmlFor="password" className="text-slate-200">
+          Password
+        </Label>
         <Input
           id="password"
           type="password"
           placeholder="Create a password"
           value={formData.password}
-          onChange={(e) => handleInputChange('password', e.target.value)}
+          onChange={(e) => handleInputChange("password", e.target.value)}
           required
           className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400 input-neon"
         />
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="confirmPassword" className="text-slate-200">Confirm Password</Label>
+        <Label htmlFor="confirmPassword" className="text-slate-200">
+          Confirm Password
+        </Label>
         <Input
           id="confirmPassword"
           type="password"
           placeholder="Confirm your password"
           value={formData.confirmPassword}
-          onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
+          onChange={(e) => handleInputChange("confirmPassword", e.target.value)}
           required
           className="bg-slate-700/50 border-slate-600 text-white placeholder:text-slate-400 input-neon"
         />
@@ -226,7 +268,6 @@ export default function Signup() {
           <AlertDescription className="text-red-200">{error}</AlertDescription>
         </Alert>
       )}
-
 
       <Button
         type="submit"
@@ -239,7 +280,7 @@ export default function Signup() {
             Creating Account...
           </>
         ) : (
-          'Create Account'
+          "Create Account"
         )}
       </Button>
     </form>
@@ -252,7 +293,9 @@ export default function Signup() {
       </div>
 
       <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-white">Creating Your Account</h3>
+        <h3 className="text-lg font-semibold text-white">
+          Creating Your Account
+        </h3>
         <p className="text-slate-400">{statusMessage}</p>
 
         <div className="space-y-2">
@@ -275,9 +318,12 @@ export default function Signup() {
       </div>
 
       <div className="space-y-4">
-        <h3 className="text-2xl font-bold text-white">Account Created Successfully! 🎉</h3>
+        <h3 className="text-2xl font-bold text-white">
+          Account Created Successfully! 🎉
+        </h3>
         <p className="text-slate-300 text-lg">
-          Welcome to the Faculty Portal, <strong className="text-blue-400">{formData.name}</strong>!
+          Welcome to the Faculty Portal,{" "}
+          <strong className="text-blue-400">{formData.name}</strong>!
         </p>
 
         <div className="p-4 bg-green-900/20 rounded-lg border border-green-500/30">
@@ -286,19 +332,24 @@ export default function Signup() {
             <span className="font-semibold">Account Details</span>
           </div>
           <div className="space-y-1 text-sm">
-            <p className="text-slate-300"><strong>Email:</strong> {formData.email}</p>
-            <p className="text-slate-300"><strong>Department:</strong> {formData.department}</p>
+            <p className="text-slate-300">
+              <strong>Email:</strong> {formData.email}
+            </p>
+            <p className="text-slate-300">
+              <strong>Department:</strong> {formData.department}
+            </p>
           </div>
         </div>
 
         <p className="text-slate-400">
-          Your faculty account is ready to use. You can now access the student performance dashboard.
+          Your faculty account is ready to use. You can now access the student
+          performance dashboard.
         </p>
       </div>
 
       <div className="space-y-3">
         <Button
-          onClick={() => navigate('/login')}
+          onClick={() => navigate("/login")}
           className="w-full btn-neon text-white font-semibold text-lg py-3"
         >
           Continue to Login
@@ -306,7 +357,7 @@ export default function Signup() {
 
         <Button
           variant="ghost"
-          onClick={() => setStep('signup')}
+          onClick={() => setStep("signup")}
           className="text-slate-400 hover:text-white"
         >
           Create Another Account
@@ -329,26 +380,34 @@ export default function Signup() {
             </div>
             <div>
               <CardTitle className="text-2xl font-bold text-white">
-                {step === 'signup' ? 'Create Faculty Account' :
-                 step === 'processing' ? 'Creating Account' : 'Welcome to Faculty Portal'}
+                {step === "signup"
+                  ? "Create Faculty Account"
+                  : step === "processing"
+                    ? "Creating Account"
+                    : "Welcome to Faculty Portal"}
               </CardTitle>
               <CardDescription className="text-slate-400">
-                {step === 'signup' ? 'Join our academic community' :
-                 step === 'processing' ? 'Setting up your account...' :
-                 'Your account has been created successfully'}
+                {step === "signup"
+                  ? "Join our academic community"
+                  : step === "processing"
+                    ? "Setting up your account..."
+                    : "Your account has been created successfully"}
               </CardDescription>
             </div>
           </CardHeader>
           <CardContent>
-            {step === 'signup' && renderSignupForm()}
-            {step === 'processing' && renderProcessingForm()}
-            {step === 'success' && renderSuccessForm()}
+            {step === "signup" && renderSignupForm()}
+            {step === "processing" && renderProcessingForm()}
+            {step === "success" && renderSuccessForm()}
 
-            {step === 'signup' && (
+            {step === "signup" && (
               <div className="mt-6 text-center">
                 <p className="text-slate-400">
-                  Already have an account?{' '}
-                  <Link to="/login" className="text-blue-400 hover:text-cyan-300 underline text-neon">
+                  Already have an account?{" "}
+                  <Link
+                    to="/login"
+                    className="text-blue-400 hover:text-cyan-300 underline text-neon"
+                  >
                     Sign in here
                   </Link>
                 </p>
