@@ -44,14 +44,26 @@ export default function Signup() {
     e.preventDefault();
     setLoading(true);
     setError('');
+    setStep('processing');
+    setProgress(0);
 
     if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match');
       setLoading(false);
+      setStep('signup');
       return;
     }
 
     try {
+      // Progress: Validating form
+      setStatusMessage('Validating form data...');
+      setProgress(20);
+      await new Promise(resolve => setTimeout(resolve, 500)); // Small delay for UX
+
+      // Progress: Creating account
+      setStatusMessage(useDemoMode ? 'Creating demo account...' : 'Creating account with Supabase...');
+      setProgress(50);
+
       const endpoint = useDemoMode ? '/api/demo/signup' : '/api/auth/signup';
       const response = await fetch(endpoint, {
         method: 'POST',
@@ -65,6 +77,10 @@ export default function Signup() {
           department: formData.department,
         }),
       });
+
+      // Progress: Processing response
+      setStatusMessage('Processing response...');
+      setProgress(80);
 
       // Check if response is ok and has content
       if (!response.ok) {
