@@ -344,19 +344,19 @@ export default function Dashboard() {
                 Upload your student data file (CSV, Excel) to get detailed analytics and performance insights.
               </div>
               <div className="flex space-x-2">
-                <Button 
+                <Button
                   onClick={() => setShowUploadModal(false)}
                   variant="outline"
-                  className="border-slate-600 text-slate-200 hover:bg-slate-700"
+                  className="btn-neon-outline"
                 >
                   Cancel
                 </Button>
-                <Button 
+                <Button
                   onClick={() => {
                     setShowUploadModal(false);
                     alert('File upload functionality would be implemented here');
                   }}
-                  className="bg-purple-600 hover:bg-purple-700 text-white"
+                  className="btn-neon text-white font-semibold"
                 >
                   Upload File
                 </Button>
