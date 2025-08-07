@@ -19,6 +19,7 @@ export default function Signup() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [step, setStep] = useState<'signup' | 'email-sent'>('signup');
+  const [useDemoMode, setUseDemoMode] = useState(false);
   const navigate = useNavigate();
 
   const departments = [
