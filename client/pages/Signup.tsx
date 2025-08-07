@@ -98,8 +98,7 @@ export default function Signup() {
       if (data.success) {
         setProgress(100);
         setStatusMessage('Account created successfully!');
-        setStatusMessage('Sending verification email...');
-        setTimeout(() => setStep('email-sent'), 1000);
+        setTimeout(() => setStep('success'), 1000);
       } else {
         setError(data.message);
         setStep('signup');
