@@ -128,7 +128,7 @@ export default function Dashboard() {
               <Users className="h-4 w-4 text-blue-400" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-white">10</div>
+              <div className="text-2xl font-bold text-white">{analytics?.totalStudents || 0}</div>
               <p className="text-xs text-green-400 flex items-center">
                 <TrendingUp className="w-3 h-3 mr-1" />
                 +2% from last month
@@ -143,7 +143,7 @@ export default function Dashboard() {
               <Target className="h-4 w-4 text-purple-400" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-white">4</div>
+              <div className="text-2xl font-bold text-white">{analytics?.topPerformers || 0}</div>
               <p className="text-xs text-green-400 flex items-center">
                 <TrendingUp className="w-3 h-3 mr-1" />
                 15% from last month
@@ -158,7 +158,7 @@ export default function Dashboard() {
               <TrendingUp className="h-4 w-4 text-green-400" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-white">86%</div>
+              <div className="text-2xl font-bold text-white">{analytics?.averageAttendance || 0}%</div>
               <p className="text-xs text-green-400 flex items-center">
                 <TrendingUp className="w-3 h-3 mr-1" />
                 +7% from last month
@@ -173,7 +173,7 @@ export default function Dashboard() {
               <AlertTriangle className="h-4 w-4 text-red-400" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-white">1</div>
+              <div className="text-2xl font-bold text-white">{analytics?.atRiskStudents || 0}</div>
               <p className="text-xs text-green-400 flex items-center">
                 <TrendingUp className="w-3 h-3 mr-1" />
                 -1% from last month
