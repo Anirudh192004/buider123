@@ -60,10 +60,10 @@ export default function Signup() {
       await new Promise(resolve => setTimeout(resolve, 500)); // Small delay for UX
 
       // Progress: Creating account
-      setStatusMessage(useDemoMode ? 'Creating demo account...' : 'Creating account with Supabase...');
+      setStatusMessage('Creating account with Supabase...');
       setProgress(50);
 
-      const endpoint = useDemoMode ? '/api/demo/signup' : '/api/auth/signup';
+      const endpoint = '/api/auth/signup';
       const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
