@@ -49,7 +49,8 @@ export default function Signup() {
     }
 
     try {
-      const response = await fetch('/api/auth/signup', {
+      const endpoint = useDemoMode ? '/api/demo/signup' : '/api/auth/signup';
+      const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
