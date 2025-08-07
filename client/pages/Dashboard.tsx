@@ -120,7 +120,7 @@ export default function Dashboard() {
         <div className="px-6 py-4 flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <h1 className="text-2xl font-bold text-white">Student Performance Dashboard</h1>
-            <Badge className="bg-purple-600 hover:bg-purple-700 text-white">
+            <Badge className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg shadow-blue-500/30">
               Academic Year 2024-25
             </Badge>
           </div>
