@@ -25,27 +25,28 @@ export const demoSignup = async (req, res) => {
     // Generate faculty code
     const facultyCode = `CS${Math.floor(Math.random() * 900) + 100}`;
 
-    // Store user as "pending verification"
+    // Store user as "verified" directly
     users.set(email, {
       name,
       email,
       password,
       department,
       facultyCode,
-      verified: false,
+      verified: true, // Auto-verify for immediate use
       created: new Date()
     });
 
-    // Simulate email sending (just log it)
-    console.log(`📧 DEMO EMAIL: Verification link sent to ${email}`);
-    console.log(`🔑 Faculty Code: ${facultyCode}`);
-    console.log(`🔗 Demo: Click here to verify: http://localhost:8080/demo-verify?email=${encodeURIComponent(email)}&code=${facultyCode}`);
+    console.log(`✅ Faculty account created: ${email} with code ${facultyCode}`);
 
     res.status(201).json({
       success: true,
-      message: "Account created! Check the server console for your verification link (Demo Mode).",
-      demo: true,
-      verificationUrl: `/demo-verify?email=${encodeURIComponent(email)}&code=${facultyCode}`
+      message: "Account created successfully!",
+      user: {
+        name,
+        email,
+        department,
+        facultyCode
+      }
     });
   } catch (error) {
     console.error("Demo signup error:", error);
