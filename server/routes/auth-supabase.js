@@ -4,11 +4,22 @@ import { supabase, getUserProfile, createUserProfile } from "../config/supabase.
 export const signup = async (req, res) => {
   try {
     const { name, email, password, department } = req.body;
-    
+
     if (!name || !email || !password || !department) {
-      return res.status(400).json({ 
-        success: false, 
-        message: "All fields are required" 
+      return res.status(400).json({
+        success: false,
+        message: "All fields are required"
+      });
+    }
+
+    // Check if Supabase is properly configured
+    const supabaseUrl = process.env.SUPABASE_URL;
+    const supabaseKey = process.env.SUPABASE_ANON_KEY;
+
+    if (!supabaseUrl || !supabaseKey || supabaseUrl.includes('your-project') || supabaseKey.includes('your-anon-key')) {
+      return res.status(500).json({
+        success: false,
+        message: "Email verification not configured. Please set up Supabase or use the MCP integration for automatic setup. Contact support for assistance."
       });
     }
 
@@ -26,9 +37,9 @@ export const signup = async (req, res) => {
 
     if (authError) {
       console.error('Supabase auth error:', authError);
-      return res.status(400).json({ 
-        success: false, 
-        message: authError.message 
+      return res.status(400).json({
+        success: false,
+        message: `Email verification failed: ${authError.message}. Please check your Supabase configuration.`
       });
     }
 
