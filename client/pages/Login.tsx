@@ -123,12 +123,6 @@ export default function Login() {
                 </Link>
               </p>
             </div>
-
-            <div className="mt-4 p-4 bg-slate-700/30 rounded-lg">
-              <p className="text-xs text-slate-400 mb-2">Demo Credentials:</p>
-              <p className="text-xs text-slate-300">Email: sarah.johnson@university.edu</p>
-              <p className="text-xs text-slate-300">Password: password123</p>
-            </div>
           </CardContent>
         </Card>
       </div>
