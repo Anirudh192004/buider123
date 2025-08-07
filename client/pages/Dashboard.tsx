@@ -311,13 +311,13 @@ export default function Dashboard() {
         </div>
 
         {/* Student Performance Overview */}
-        <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-sm">
+        <Card className="bg-slate-800/50 border-blue-500/20 backdrop-blur-sm shadow-lg shadow-blue-500/10">
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle className="text-white">Student Performance Overview</CardTitle>
-            <Button 
+            <Button
               onClick={handleExport}
-              variant="outline" 
-              className="border-slate-600 text-slate-200 hover:bg-slate-700"
+              variant="outline"
+              className="btn-neon-outline"
             >
               <Download className="w-4 h-4 mr-2" />
               Export
