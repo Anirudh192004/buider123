@@ -64,13 +64,12 @@ export default function Signup() {
       const data = await response.json();
 
       if (data.success) {
-        setFacultyCode(data.facultyCode);
-        setStep('verify');
+        setStep('email-sent');
       } else {
         setError(data.message);
-        
+
         // If account already exists, redirect to login
-        if (data.message.includes('already exists')) {
+        if (data.message.includes('already exists') || data.message.includes('already registered')) {
           setTimeout(() => {
             navigate('/login');
           }, 2000);
