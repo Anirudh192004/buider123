@@ -60,10 +60,10 @@ export default function Signup() {
       await new Promise(resolve => setTimeout(resolve, 500)); // Small delay for UX
 
       // Progress: Creating account
-      setStatusMessage('Creating account with Supabase...');
+      setStatusMessage('Creating your faculty account...');
       setProgress(50);
 
-      const endpoint = '/api/auth/signup';
+      const endpoint = '/api/demo/signup';
       const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
