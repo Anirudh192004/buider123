@@ -193,22 +193,22 @@ export default function Dashboard() {
             <CardContent>
               <div className="h-80">
                 <ResponsiveContainer width="100%" height="100%">
-                  <LineChart data={performanceTrends}>
+                  <LineChart data={analytics?.performanceTrends || []}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                    <XAxis 
-                      dataKey="month" 
+                    <XAxis
+                      dataKey="month"
                       stroke="#9CA3AF"
                       fontSize={12}
                     />
-                    <YAxis 
+                    <YAxis
                       stroke="#9CA3AF"
                       fontSize={12}
                       domain={[0, 100]}
                     />
-                    <Line 
-                      type="monotone" 
-                      dataKey="performance" 
-                      stroke="#8B5CF6" 
+                    <Line
+                      type="monotone"
+                      dataKey="performance"
+                      stroke="#8B5CF6"
                       strokeWidth={3}
                       dot={{ fill: '#8B5CF6', strokeWidth: 2, r: 6 }}
                       activeDot={{ r: 8, fill: '#A855F7' }}
