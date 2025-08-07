@@ -29,6 +29,11 @@ export function createServer() {
   app.get("/api/auth/check-email-status", checkEmailStatus);
   app.post("/api/auth/logout", logout);
 
+  // Demo authentication routes (for testing without Supabase)
+  app.post("/api/demo/signup", demoSignup);
+  app.post("/api/demo/login", demoLogin);
+  app.get("/api/demo-verify", demoVerify);
+
   // Student data routes
   app.get("/api/faculty/:facultyId/analytics", getAnalytics);
   app.get("/api/faculty/:facultyId/students", getStudents);
