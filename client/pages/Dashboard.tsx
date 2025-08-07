@@ -4,25 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
-import { Upload, Download, Users, TrendingUp, AlertTriangle, Target, Bell, LogOut } from 'lucide-react';
+import { Upload, Download, Users, TrendingUp, AlertTriangle, Target, Bell, LogOut, Loader2 } from 'lucide-react';
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from 'recharts';
-
-// Sample data for charts
-const performanceTrends = [
-  { month: 'Jan', performance: 75 },
-  { month: 'Feb', performance: 82 },
-  { month: 'Mar', performance: 85 },
-  { month: 'Apr', performance: 88 },
-  { month: 'May', performance: 92 },
-];
-
-const subjectPerformance = [
-  { subject: 'Mathematics', score: 85 },
-  { subject: 'Physics', score: 78 },
-  { subject: 'Chemistry', score: 82 },
-  { subject: 'English', score: 90 },
-  { subject: 'Biology', score: 86 },
-];
 
 export default function Dashboard() {
   const [user, setUser] = useState<any>(null);
