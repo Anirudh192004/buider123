@@ -330,19 +330,19 @@ export default function Signup() {
             <div>
               <CardTitle className="text-2xl font-bold text-white">
                 {step === 'signup' ? 'Create Faculty Account' :
-                 step === 'processing' ? 'Creating Account' : 'Verify Your Email'}
+                 step === 'processing' ? 'Creating Account' : 'Welcome to Faculty Portal'}
               </CardTitle>
               <CardDescription className="text-slate-400">
                 {step === 'signup' ? 'Join our academic community' :
                  step === 'processing' ? 'Setting up your account...' :
-                 'Complete your registration process'}
+                 'Your account has been created successfully'}
               </CardDescription>
             </div>
           </CardHeader>
           <CardContent>
             {step === 'signup' && renderSignupForm()}
             {step === 'processing' && renderProcessingForm()}
-            {step === 'email-sent' && renderEmailSentForm()}
+            {step === 'success' && renderSuccessForm()}
 
             {step === 'signup' && (
               <div className="mt-6 text-center">
