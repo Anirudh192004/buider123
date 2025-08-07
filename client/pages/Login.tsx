@@ -38,7 +38,7 @@ export default function Login() {
         navigate('/dashboard');
       } else {
         setError(data.message);
-        
+
         // If account not found, redirect to signup
         if (data.message.includes('Account not found')) {
           setTimeout(() => {
@@ -47,7 +47,8 @@ export default function Login() {
         }
       }
     } catch (error) {
-      setError('Network error. Please try again.');
+      console.error('Login error:', error);
+      setError(`Network error: ${error.message || 'Please try again.'}`);
     } finally {
       setLoading(false);
     }
