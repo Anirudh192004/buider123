@@ -63,6 +63,18 @@ export default function Signup() {
         }),
       });
 
+      // Check if response is ok and has content
+      if (!response.ok) {
+        const errorText = await response.text();
+        try {
+          const errorData = JSON.parse(errorText);
+          setError(errorData.message || `Error: ${response.status}`);
+        } catch {
+          setError(`Server error: ${response.status} ${response.statusText}`);
+        }
+        return;
+      }
+
       const data = await response.json();
 
       if (data.success) {
@@ -83,7 +95,8 @@ export default function Signup() {
         }
       }
     } catch (error) {
-      setError('Network error. Please try again.');
+      console.error('Signup error:', error);
+      setError(`Network error: ${error.message || 'Please try again.'}`);
     } finally {
       setLoading(false);
     }
