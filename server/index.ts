@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import { handleDemo } from "./routes/demo";
 import { login, signup, resendVerification, checkEmailStatus, logout } from "./routes/auth-supabase.js";
+import { demoSignup, demoLogin, demoVerify } from "./routes/auth-demo.js";
 import { getAnalytics, getStudents, createStudent, updateStudentData, removeStudent, bulkUpload } from "./routes/students.js";
 
 export function createServer() {
