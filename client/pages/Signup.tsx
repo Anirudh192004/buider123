@@ -6,7 +6,8 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Loader2, GraduationCap, CheckCircle, Mail } from 'lucide-react';
+import { Progress } from '@/components/ui/progress';
+import { Loader2, GraduationCap, CheckCircle, Mail, AlertCircle, Zap, Clock } from 'lucide-react';
 
 export default function Signup() {
   const [formData, setFormData] = useState({
