@@ -27,5 +27,13 @@ export function createServer() {
   app.post("/api/auth/verify", verifyCode);
   app.get("/api/auth/check-email", checkEmail);
 
+  // Student data routes
+  app.get("/api/faculty/:facultyId/analytics", getAnalytics);
+  app.get("/api/faculty/:facultyId/students", getStudents);
+  app.post("/api/faculty/:facultyId/students", createStudent);
+  app.post("/api/faculty/:facultyId/students/bulk", bulkUpload);
+  app.put("/api/students/:studentId", updateStudentData);
+  app.delete("/api/students/:studentId", removeStudent);
+
   return app;
 }
