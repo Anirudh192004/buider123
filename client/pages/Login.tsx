@@ -20,7 +20,7 @@ export default function Login() {
     setError('');
 
     try {
-      const endpoint = useDemoMode ? '/api/demo/login' : '/api/auth/login';
+      const endpoint = '/api/auth/login';
       const response = await fetch(endpoint, {
         method: 'POST',
         headers: {
