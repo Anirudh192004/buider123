@@ -242,7 +242,7 @@ export default function Dashboard() {
         {/* Charts */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Performance Trends Chart */}
-          <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-sm">
+          <Card className="bg-slate-800/50 border-blue-500/20 backdrop-blur-sm shadow-lg shadow-blue-500/10">
             <CardHeader>
               <CardTitle className="text-white">Performance Trends</CardTitle>
             </CardHeader>
