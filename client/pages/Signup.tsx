@@ -270,6 +270,29 @@ export default function Signup() {
     </form>
   );
 
+  const renderProcessingForm = () => (
+    <div className="text-center space-y-6">
+      <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse">
+        <Loader2 className="w-8 h-8 text-white animate-spin" />
+      </div>
+
+      <div className="space-y-4">
+        <h3 className="text-lg font-semibold text-white">Creating Your Account</h3>
+        <p className="text-slate-400">{statusMessage}</p>
+
+        <div className="space-y-2">
+          <Progress value={progress} className="w-full h-2" />
+          <p className="text-xs text-slate-500">{progress}% complete</p>
+        </div>
+      </div>
+
+      <div className="flex items-center space-x-2 text-sm text-slate-400">
+        <Clock className="w-4 h-4" />
+        <span>This usually takes a few seconds...</span>
+      </div>
+    </div>
+  );
+
   const renderEmailSentForm = () => (
     <div className="text-center space-y-4">
       <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
