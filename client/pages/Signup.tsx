@@ -82,30 +82,26 @@ export default function Signup() {
     }
   };
 
-  const handleVerification = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleResendVerification = async () => {
     setLoading(true);
     setError('');
 
     try {
-      const response = await fetch('/api/auth/verify', {
+      const response = await fetch('/api/auth/resend-verification', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           email: formData.email,
-          facultyCode: verificationCode,
         }),
       });
 
       const data = await response.json();
 
       if (data.success) {
-        // Redirect to login page
-        navigate('/login', { 
-          state: { message: 'Account verified successfully! Please login.' }
-        });
+        setError(''); // Clear any previous errors
+        alert('Verification email sent successfully!');
       } else {
         setError(data.message);
       }
