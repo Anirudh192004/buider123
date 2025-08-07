@@ -30,6 +30,18 @@ export default function Login() {
         body: JSON.stringify({ email, password }),
       });
 
+      // Check if response is ok and has content
+      if (!response.ok) {
+        const errorText = await response.text();
+        try {
+          const errorData = JSON.parse(errorText);
+          setError(errorData.message || `Error: ${response.status}`);
+        } catch {
+          setError(`Server error: ${response.status} ${response.statusText}`);
+        }
+        return;
+      }
+
       const data = await response.json();
 
       if (data.success) {
