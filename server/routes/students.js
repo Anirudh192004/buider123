@@ -1,4 +1,3 @@
-import { RequestHandler } from "express";
 import { getStudentsByFaculty, addStudent, getClassAnalytics, updateStudent, deleteStudent } from "../db/students.js";
 
 // Get analytics for a faculty's class
