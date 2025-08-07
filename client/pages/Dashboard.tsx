@@ -10,6 +10,8 @@ import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Responsive
 export default function Dashboard() {
   const [user, setUser] = useState<any>(null);
   const [showUploadModal, setShowUploadModal] = useState(false);
+  const [analytics, setAnalytics] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,8 +20,30 @@ export default function Dashboard() {
       navigate('/login');
       return;
     }
-    setUser(JSON.parse(userData));
+    const userObj = JSON.parse(userData);
+    setUser(userObj);
+
+    // Fetch analytics data
+    fetchAnalytics(userObj.id);
   }, [navigate]);
+
+  const fetchAnalytics = async (facultyId: number) => {
+    try {
+      setLoading(true);
+      const response = await fetch(`/api/faculty/${facultyId}/analytics`);
+      const data = await response.json();
+
+      if (data.success) {
+        setAnalytics(data.data);
+      } else {
+        console.error('Failed to fetch analytics:', data.message);
+      }
+    } catch (error) {
+      console.error('Error fetching analytics:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleLogout = () => {
     localStorage.removeItem('user');
