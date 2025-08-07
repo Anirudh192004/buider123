@@ -291,7 +291,7 @@ export default function Signup() {
               <div className="mt-6 text-center">
                 <p className="text-slate-400">
                   Already have an account?{' '}
-                  <Link to="/login" className="text-purple-400 hover:text-purple-300 underline">
+                  <Link to="/login" className="text-blue-400 hover:text-cyan-300 underline text-neon">
                     Sign in here
                   </Link>
                 </p>
