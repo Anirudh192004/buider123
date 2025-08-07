@@ -154,7 +154,7 @@ export default function Dashboard() {
             <div className="flex items-center space-x-3">
               <Avatar>
                 <AvatarImage src="/placeholder.svg" />
-                <AvatarFallback className="bg-purple-600 text-white">
+                <AvatarFallback className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg shadow-blue-500/30">
                   {user.name.split(' ').map((n: string) => n[0]).join('')}
                 </AvatarFallback>
               </Avatar>
