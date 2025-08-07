@@ -227,23 +227,23 @@ export default function Dashboard() {
             <CardContent>
               <div className="h-80">
                 <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={subjectPerformance}>
+                  <BarChart data={analytics?.subjectPerformance || []}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                    <XAxis 
-                      dataKey="subject" 
+                    <XAxis
+                      dataKey="subject"
                       stroke="#9CA3AF"
                       fontSize={12}
                       angle={-45}
                       textAnchor="end"
                       height={60}
                     />
-                    <YAxis 
+                    <YAxis
                       stroke="#9CA3AF"
                       fontSize={12}
                       domain={[0, 100]}
                     />
-                    <Bar 
-                      dataKey="score" 
+                    <Bar
+                      dataKey="score"
                       fill="#8B5CF6"
                       radius={[4, 4, 0, 0]}
                     />
