@@ -118,18 +118,6 @@ export default function Login() {
                 </Alert>
               )}
 
-              <div className="flex items-center space-x-2 p-3 bg-blue-900/20 rounded-lg border border-blue-500/30">
-                <input
-                  type="checkbox"
-                  id="demoModeLogin"
-                  checked={useDemoMode}
-                  onChange={(e) => setUseDemoMode(e.target.checked)}
-                  className="rounded border-blue-500"
-                />
-                <label htmlFor="demoModeLogin" className="text-sm text-slate-300">
-                  Use Demo Mode
-                </label>
-              </div>
 
               <Button
                 type="submit"
