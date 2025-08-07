@@ -1,11 +1,46 @@
 import { createClient } from '@supabase/supabase-js';
 
 // Supabase configuration
-const supabaseUrl = process.env.SUPABASE_URL || 'your-supabase-url';
-const supabaseKey = process.env.SUPABASE_ANON_KEY || 'your-supabase-anon-key';
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_ANON_KEY;
 
-// Create Supabase client
-export const supabase = createClient(supabaseUrl, supabaseKey);
+// Check if Supabase is configured
+const isSupabaseConfigured = () => {
+  return supabaseUrl &&
+         supabaseKey &&
+         !supabaseUrl.includes('your-project') &&
+         !supabaseKey.includes('your-anon-key') &&
+         supabaseUrl.startsWith('https://');
+};
+
+// Lazy-loaded Supabase client
+let supabaseClient = null;
+
+export const getSupabaseClient = () => {
+  if (!isSupabaseConfigured()) {
+    throw new Error('Supabase is not configured. Please set SUPABASE_URL and SUPABASE_ANON_KEY environment variables.');
+  }
+
+  if (!supabaseClient) {
+    supabaseClient = createClient(supabaseUrl, supabaseKey);
+  }
+
+  return supabaseClient;
+};
+
+// Export a safe supabase object that checks configuration
+export const supabase = {
+  get client() {
+    return getSupabaseClient();
+  },
+  auth: {
+    get signUp() { return getSupabaseClient().auth.signUp.bind(getSupabaseClient().auth); },
+    get signInWithPassword() { return getSupabaseClient().auth.signInWithPassword.bind(getSupabaseClient().auth); },
+    get signOut() { return getSupabaseClient().auth.signOut.bind(getSupabaseClient().auth); },
+    get resend() { return getSupabaseClient().auth.resend.bind(getSupabaseClient().auth); }
+  },
+  from(table) { return getSupabaseClient().from(table); }
+};
 
 // Helper function to get user profile
 export const getUserProfile = async (userId) => {
